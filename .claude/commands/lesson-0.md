@@ -114,52 +114,55 @@ Wait for the student to answer. If their answer captures the idea that the playg
 
 ---
 
-## Step 5: Create a GitHub Remote for the Playground
+## Step 5: Create an Initial File & Commit
 
-Tell the student: "Let's connect your playground to GitHub so you have a remote copy."
+Tell the student: "Before we connect to GitHub, let's create your first file. Git needs at least one commit before it can push — an empty repo has no branch yet."
+
+Have them run:
+```bash
+cd /Users/jrojomartinez/Downloads/github-course-in-claude/playground
+echo "# Git Course Playground" > README.md
+git add README.md
+git commit -m "Initial commit"
+```
+
+Explain: "We'll push this in the next step once we've set up the remote. This is also a good example of the order of operations — local repo first, then connect it to the cloud."
+
+---
+
+## Step 6: Create a GitHub Remote & Push
+
+Tell the student: "Now let's connect your playground to GitHub and push."
 
 Have them run:
 ```bash
 cd /Users/jrojomartinez/Downloads/github-course-in-claude/playground && gh repo create git-course-playground --public --source=. --push
 ```
 
-- This creates a new public repository on the **student's own GitHub account** and pushes the current (empty) repo to it.
-- If it fails because the repo name already exists, suggest adding a suffix (e.g. `git-course-playground-2`) or deleting the old one via `gh repo delete`.
+- This creates a new public repository on the **student's own GitHub account**, sets up the `origin` remote, and pushes the initial commit — all in one command.
+- If it fails because the repo name already exists, suggest adding a suffix (e.g. `git-course-playground-2`) or deleting the old one via `gh repo delete git-course-playground --yes`.
 
 After it succeeds, explain:
 - "Now your local repo has a **remote** on GitHub. This is the link between your machine and the cloud."
 - "The remote is named `origin` — that's the conventional default name git uses for the primary remote. You can verify this with `git remote -v`."
 
-**Teaching note — two ways to do this (explain the difference):**
+**Why this order matters (teach explicitly):**
+- `gh repo create --push` on an *empty repo* (no commits) will create the GitHub repo but silently fail to push — because git hasn't created a branch yet. A branch only exists after the first commit.
+- Always make at least one commit locally before running `--push`.
 
-There are two common approaches to creating a repo on GitHub and linking it to a local repo:
+**Teaching note — two ways to do this:**
 
-1. **`gh repo create` (all-in-one)**: What we suggested above. Creates the GitHub repo AND sets up the `origin` remote AND does the initial push — all in one command. Fastest path.
+1. **`gh repo create` (all-in-one)**: What we just did. Creates the GitHub repo AND sets up `origin` AND pushes — one command.
 
-2. **Manual (what the student may have done)**:
-   - Create the repo on GitHub via the website (or `gh repo create` without `--source`)
-   - Then **in the terminal**, inside your local repo: `git remote add origin <url>` to link them
+2. **Manual**:
+   - Create the repo on GitHub via the website
+   - Then **in the terminal**: `git remote add origin <url>` to link them
    - Then `git push -u origin main` to push and set the tracking branch
    - **Important**: Creating a repo on GitHub via the website does NOT automatically link it to your local folder. The link only exists once you run `git remote add` in your terminal.
 
-Both arrive at the same result. The `gh` approach just saves the extra steps. The manual approach is worth knowing because it's what you'd do if you already have a local repo and want to put it on GitHub after the fact — which is common.
+Both arrive at the same result. The manual approach is worth knowing for when you already have a local repo and want to put it on GitHub after the fact.
 
 Mention: "We'll go deeper on what `origin`, remotes, and tracking branches mean in Lesson 5."
-
----
-
-## Step 6: Create an Initial File & Push
-
-Tell the student: "Let's add your first file and push it to GitHub."
-
-Have them run the following commands from inside the playground directory:
-```bash
-cd /Users/jrojomartinez/Downloads/github-course-in-claude/playground
-echo "# Git Course Playground" > README.md
-git add README.md
-git commit -m "Initial commit"
-git push
-```
 
 After they succeed, say:
 - "You just did the classic git workflow: create a file, stage it, commit it, push it."
