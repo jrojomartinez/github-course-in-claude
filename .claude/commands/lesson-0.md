@@ -106,6 +106,7 @@ Explain the concept of nested repositories:
 Then explain the alternative — submodules:
 - "There's a more formal way to link repos together called **git submodules**. With submodules, one repo tracks a specific commit of another repo. When you clone the outer repo, you can pull in the inner repo at exactly the version it was pinned to."
 - "We're using the simpler `.gitignore` approach here because the playground is your personal sandbox — it's not a shared dependency. You'd use submodules when you need to pin a specific version of a shared library or component across a team."
+- **Rule of thumb**: "If it's shared, versioned, and others need to clone it at a specific commit → submodule. If it's personal/local/throwaway → `.gitignore`."
 
 Check understanding by asking: "Why are we using `.gitignore` instead of submodules here?"
 
