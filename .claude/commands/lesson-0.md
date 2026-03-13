@@ -138,8 +138,9 @@ There are two common approaches to creating a repo on GitHub and linking it to a
 
 2. **Manual (what the student may have done)**:
    - Create the repo on GitHub via the website (or `gh repo create` without `--source`)
-   - Then in the local repo: `git remote add origin <url>` to link them
+   - Then **in the terminal**, inside your local repo: `git remote add origin <url>` to link them
    - Then `git push -u origin main` to push and set the tracking branch
+   - **Important**: Creating a repo on GitHub via the website does NOT automatically link it to your local folder. The link only exists once you run `git remote add` in your terminal.
 
 Both arrive at the same result. The `gh` approach just saves the extra steps. The manual approach is worth knowing because it's what you'd do if you already have a local repo and want to put it on GitHub after the fact — which is common.
 
