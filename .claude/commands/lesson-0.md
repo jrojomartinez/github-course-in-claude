@@ -130,6 +130,21 @@ After it succeeds, explain:
 - "Now your local repo has a **remote** on GitHub. This is the link between your machine and the cloud."
 - "The remote is named `origin` — that's the conventional default name git uses for the primary remote. You can verify this with `git remote -v`."
 
+**Teaching note — two ways to do this (explain the difference):**
+
+There are two common approaches to creating a repo on GitHub and linking it to a local repo:
+
+1. **`gh repo create` (all-in-one)**: What we suggested above. Creates the GitHub repo AND sets up the `origin` remote AND does the initial push — all in one command. Fastest path.
+
+2. **Manual (what the student may have done)**:
+   - Create the repo on GitHub via the website (or `gh repo create` without `--source`)
+   - Then in the local repo: `git remote add origin <url>` to link them
+   - Then `git push -u origin main` to push and set the tracking branch
+
+Both arrive at the same result. The `gh` approach just saves the extra steps. The manual approach is worth knowing because it's what you'd do if you already have a local repo and want to put it on GitHub after the fact — which is common.
+
+Mention: "We'll go deeper on what `origin`, remotes, and tracking branches mean in Lesson 5."
+
 ---
 
 ## Step 6: Create an Initial File & Push
