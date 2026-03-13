@@ -66,6 +66,14 @@ Teach the student the distinction between the two tools:
 - **gh** is GitHub's CLI. It handles platform-specific features: creating repos on GitHub, opening pull requests, managing issues, viewing CI status. It needs an internet connection and a GitHub account.
 - They complement each other: git for the core version control, gh for the GitHub platform layer.
 
+**Key distinctions to teach explicitly (students often ask about these):**
+
+- **`git push` vs `gh`**: There is no `gh push`. Pushing code is a core git operation — it sends your commits from your local repo to the remote. `gh` doesn't replace or wrap `git push`. `gh` only handles things that exist exclusively on GitHub's platform.
+
+- **Pull requests are NOT a git concept**: This is a common misconception. `git pull` (which downloads and merges remote changes) has nothing to do with a "pull request." A pull request is a GitHub invention — a collaboration layer built on top of git for reviewing and discussing code before merging. Git has no native concept of it. That's why creating/managing PRs is done via `gh pr create`, not via any `git` command.
+
+- **The mental model**: git = moving code around and tracking history (push, pull, fetch, commit, branch, merge). gh = GitHub-specific workflows (pull requests, issues, repo creation, CI checks).
+
 Then ask the student: "Does the distinction between git and gh make sense? Any questions before we continue?"
 
 Wait for the student to confirm understanding before proceeding.
