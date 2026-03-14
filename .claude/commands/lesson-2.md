@@ -37,6 +37,21 @@ Use this analogy to make it concrete:
 
 Draw a simple text diagram showing the flow: `Working Directory --git add--> Staging Area --git commit--> Repository`.
 
+**Key point — the three areas are independent.** Changes in one do NOT automatically affect the others. You control each transition explicitly with git commands.
+
+**Reverting each area independently:**
+
+| What you want | Command |
+|---|---|
+| Discard working directory changes (revert to last commit) | `git restore <file>` |
+| Unstage a file (revert staging area to last commit, keep working dir) | `git restore --staged <file>` |
+| Wipe both working directory AND staging area | `git reset --hard` (or both commands above) |
+
+Important nuance:
+- `git restore <file>` — working directory reverts to last commit. Staging area untouched.
+- `git restore --staged <file>` — staging area reverts to last commit. Working directory untouched. Your edits survive.
+- If you want to "restore working directory to what's staged" (not to last commit): commit first, then restore. There's no single command for "working dir = staging."
+
 Ask the student if this makes sense before moving on.
 
 ---
